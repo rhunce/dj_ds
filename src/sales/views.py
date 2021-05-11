@@ -8,6 +8,7 @@ import pandas as pd
 
 
 def home_view(request):
+    sales_df = None
     form = SalesSearchForm(request.POST or None)
 
     if request.method == 'POST':
@@ -16,15 +17,17 @@ def home_view(request):
         chart_type = request.POST.get('chart_type')
         # print(date_from, date_to, chart_type)
 
-        qs = Sale.objects.filter(created__date=date_from)
-        obj = Sale.objects.get(id=4)
-
-        print('#############')
-        df1 = pd.DataFrame(qs.values())
-        print(df1)
+        qs = Sale.objects.filter(created__date__lte=date_to, created__date__gte=date_from)
+        if len(qs) > 0:
+            sales_df = pd.DataFrame(qs.values())
+            sales_df = sales_df.to_html()
+            print(sales_df)
+        else:
+            print('no data')
 
     context = {
-        'form': form
+        'form': form,
+        'sales_df': sales_df
     }
     return render(request, 'sales/home.html', context)
 
