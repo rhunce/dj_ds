@@ -3,9 +3,17 @@ from profiles.models import Profile
 from django.http import JsonResponse
 from .utils import get_report_image
 from .models import Report
-from .forms import ReportForm
+# from .forms import ReportForm #B
+from django.views.generic import ListView, DetailView
 
 # Create your views here.
+class ReportListView(ListView):
+  model = Report
+  template_name = 'reports/main.html'
+
+class ReportDetailView(DetailView):
+  model = Report
+  template_name = 'reports/detail.html'
 
 def create_report_view(request):
   # form = ReportForm(request.POST or None) # B
