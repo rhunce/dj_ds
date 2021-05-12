@@ -1,12 +1,19 @@
-console.log('Hello, World!');
-
 const reportBtn = document.getElementById('report-btn');
 const img = document.getElementById('img');
 const modalBody = document.getElementById('modal-body');
 const reportForm = document.getElementById('report-form');
+const alertBox = document.getElementById('alert-box');
 const reportName = document.getElementById('id_name');
 const reportRemarks = document.getElementById('id_remarks');
 const csrf = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+
+const handleAlerts = (type, msg) => {
+  alertBox.innerHTML = `
+  <div class="alert alert-${type}" role="alert">
+    ${msg}
+  </div>
+  `;
+};
 
 if (img) {
   reportBtn.classList.remove('not-visible');
@@ -27,8 +34,9 @@ reportBtn.addEventListener('click', () => {
       type: 'POST',
       url: '/reports/save/',
       data: formData,
-      success: (response) => console.log('response: ', response),
-      error: (err) => console.log('err: ', err),
+      success: (response) => handleAlerts('success', 'Report created!'),
+      error: (err) =>
+        handleAlerts('danger', 'Report failed to create. Something is wrong.'),
       processData: false,
       contentType: false,
     });
