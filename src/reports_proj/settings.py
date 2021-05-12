@@ -131,7 +131,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 # Added this
 STATICFILES_DIRS = [
-    BASE_DIR / 'static'
+    BASE_DIR / 'static',
+    BASE_DIR / 'sales' / 'static',
 ]
 
 # And added this
