@@ -23,6 +23,7 @@ from django.urls import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('sales.urls', namespace='sales')),
+    path('reports/', include('reports.urls', namespace='reports'))
 ]
 
 # Added this
