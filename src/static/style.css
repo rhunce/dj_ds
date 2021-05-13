@@ -12,3 +12,8 @@
 .dz:hover {
   background-color: #f5f5f5;
 }
+
+.avatar-big {
+  height: 200px;
+  width: 200px;
+}

@@ -23,7 +23,8 @@ from django.urls import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('sales.urls', namespace='sales')),
-    path('reports/', include('reports.urls', namespace='reports'))
+    path('reports/', include('reports.urls', namespace='reports')),
+    path('my_profile/', include('profiles.urls', namespace='profiles'))
 ]
 
 # Added this
