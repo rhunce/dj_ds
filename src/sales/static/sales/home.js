@@ -34,9 +34,13 @@ reportBtn.addEventListener('click', () => {
       type: 'POST',
       url: '/reports/save/',
       data: formData,
-      success: (response) => handleAlerts('success', 'Report created!'),
-      error: (err) =>
-        handleAlerts('danger', 'Report failed to create. Something is wrong.'),
+      success: function (response) {
+        handleAlerts('success', 'Report created!');
+        reportForm.reset();
+      },
+      error: function (err) {
+        handleAlerts('danger', 'Report failed to create. Something is wrong.');
+      },
       processData: false,
       contentType: false,
     });
